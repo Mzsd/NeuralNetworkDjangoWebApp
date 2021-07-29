@@ -1,0 +1,148 @@
+{% load static %}
+
+{% comment %} <link rel="stylesheet" href="{% static 'style.css' %}"> {% endcomment %}
+{% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> {% endcomment %}
+
+{% comment %} <script src="{% static 'index.js' %}"></script> {% endcomment %}
+
+{% comment %} <form class="fileUpload" action="{% url "mnist:upload-image" %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" class="fileElem" multiple name="myImage" accept="image/x-png,image/jpeg">
+    <label class="fileSelect">Upload File</label>
+    <h4>{{ upload.label }}</h4>
+    <progress value="100" max="100"></progress>
+    <p>4.00 GB out of 10 GB (40%) (<a href="#" class="upgrade">Upgrade</a>)</p>
+</form> {% endcomment %}
+
+{% comment %} <form class="fileUpload">
+  <input type="file" class="fileElem" multiple>
+  <label class="fileSelect">Upload File</label>
+  <h4>Usage</h4>
+  <progress value="40" max="100"></progress>
+  <p>4.00 GB out of 10 GB (40%) (<a href="#" class="upgrade">Upgrade</a>)</p>
+</form> {% endcomment %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<style>
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.file-upload input[type='file'] {
+  display: none;
+}
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+body {
+  background: #00B4DB;
+  background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+  background: linear-gradient(to right, #0083B0, #00B4DB);
+  height: 100vh;
+}
+
+#fileUpload {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.rounded-lg {
+  border-radius: 1rem;
+}
+
+.custom-file-label.rounded-pill {
+  border-radius: 50rem;
+}
+
+.custom-file-label.rounded-pill::after {
+  border-radius: 0 50rem 50rem 0;
+}
+
+</style>
+
+<script>
+{% comment %} 
+function() {
+    document.getElementById("form").submit();
+} {% endcomment %}
+
+</script>
+
+</head>
+
+<body style="margin:0px">
+
+<section>
+  <div class="container p-5">
+    <!-- For demo purpose -->
+    <div class="row mb-5 text-center text-white">
+      <div class="col-lg-10 mx-auto">
+        <h1 class="display-4">Handwritten Number Detector </h1>
+        <p class="lead">Take a picture of an handwritten number and upload!</p>
+      </div>
+    </div>
+    <!-- End -->
+
+
+    <div class="row">
+      <div class="col-lg-5 mx-auto">
+        <div class="p-5 bg-white shadow rounded-lg"><img src="{% static 'mnist.png' %}" alt="" width="200" class="d-block mx-auto mb-4 rounded-pill">
+
+          <!-- Default bootstrap file upload-->
+
+          <h6 class="text-center mb-3 text-muted">
+            Note: Upload one number image that is readable by human.
+          </h6>
+        <form id="form" action="{% url 'mnist:upload-image' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="custom-file overflow-hidden rounded-pill mb-5">
+            <input id="customFile" type="file" class="custom-file-input rounded-pill" name="myImage" accept="image/x-png,image/jpeg" onchange="form.submit()" >
+            <label for="customFile" class="custom-file-label rounded-pill">Choose Image File</label>
+          </div>
+        </form>
+        <h6 class="text-center mb-3 pt-1 text-muted font-weight-bold display-4">
+          {{ upload.label }}
+        </h6>
+        <h6 class="text-center mb-1 text-muted">
+          <br>
+          Thanks to Abeer, Haseeb and Hashir
+        </h6>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+
+
+</script>    
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
